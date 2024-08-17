@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKSCERT Homepage</title>
+    <style>
+        /* General Styling */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background-color: #004080;
+    color: #fff;
+    padding: 10px 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav {
+    flex: 2;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    position: relative; /* Position relative for submenu positioning */
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li ul {
+    display: none; /* Hide submenus by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #004080;
+    padding: 10px;
+    list-style-type: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    white-space: nowrap; /* Prevent wrapping of submenu items */
+}
+
+header nav ul li:hover > ul {
+    display: block; /* Show submenu on hover */
+}
+
+header nav ul li ul ul {
+    top: 0;
+    left: 100%; /* Position nested menus to the right of their parent */
+}
+
+header nav ul li ul li {
+    margin: 0;
+    padding: 5px 10px;
+}
+
+header nav ul li ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li ul li a:hover {
+    background-color: #003366;
+}
+
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Slider */
+         .slider {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.next {
+    right: 0;
+}
+
+.prev {
+    left: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active, .dot:hover {
+    background-color: #717171;
+}
+
+
+
+        /* Content Wrapper */
+        .content {
+            padding: 20px;
+            flex: 1;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-wrapper {
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Director's Message & About SCERT */
+        .director-message img {
+            float: left;
+            margin-right: 20px;
+            border-radius: 50%;
+            max-width: 150px;
+        }
+
+        .director-message:after, .about-scert:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .director-message p, .about-scert p {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Initiatives */
+        .initiatives {
+            background-color: #f6e2c9;
+        }
+
+        /* Orders and Circulars, Announcements */
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+		height:360px;
+
+
+        }
+
+        .orders, .announcements {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+.announcements {
+    	margin-bottom: 40px;
+	background-color: #f0f0f0;
+	padding: 20px;
+            flex: 1;
+            max-width: 1000px;
+            margin: auto;
+            text-align: left;
+}
+
+.announcements h2 {
+    margin-bottom: 10px;
+padding: 20px;
+            flex: 1;
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+}
+
+#announcementList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 250px; /* Adjust height as needed */
+    overflow: hidden;
+    border: 0px solid #ccc;
+   
+}
+
+.announcement-wrapper {
+    height: 250px; /* Adjust height as needed */
+    overflow: hidden;
+    position: relative;
+}
+.order-wrapper
+{
+height:250px;
+overflow-y: auto;
+}
+/* Styles for the new message */
+.order-wrapper ul li {
+    position: relative;
+}
+
+.order-wrapper ul li.new::before {
+    content: "New";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#announcementList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+#announcementList li {
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+#announcementList li:nth-child(even) {
+    background-color: #e0e0e0; /* Alternate background color */
+}
+
+@keyframes scroll-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+#announcementList {
+    animation: scroll-up 20s linear infinite; /* Adjust speed as needed */
+    display: flex;
+    flex-direction: column;
+}
+
+        /* Responsive Layout */
+        @media screen and (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .orders, .announcements {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+      <header>
+        <div class="container">
+            <div class="logo">
+                <a href="home.php"><img src="JKSCERT_LOGO.png" alt="JKSERT Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+
+
+                 <li><a href="#">Divisions</a>
+
+<ul>
+<li><a href="#">Central Move Office</a></li>
+<li><a href="#">Jammu Divisional Office</a></li>
+<li><a href="#">Kashmir Divisional Office</a></li>
+</ul>
+</li>
+                    <li><a href="#">DIETS</a>
+                        <ul>
+                            <li><a href="#">Jammu</a>
+                                <ul>
+                                    <li><a href="#">Doda</a></li>
+                                    <li><a href="#">Jammu</a></li>
+                                    <li><a href="#">Kathua</a></li>
+                                    <li><a href="#">Kishtwar</a></li>
+                                    <li><a href="#">Poonch</a></li>
+                                    <li><a href="#">Rajouri</a></li>
+                                    <li><a href="#">Ramban</a></li>
+                                    <li><a href="#">Reasi</a></li>
+                                    <li><a href="#">Samba</a></li>
+                                    <li><a href="#">Udhampur</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Kashmir</a>
+                                <ul>
+                                    <li><a href="#">Anantnag</a></li>
+                                    <li><a href="#">Bandipora</a></li>
+                                    <li><a href="#">Baramulla</a></li>
+                                    <li><a href="#">Budgam</a></li>
+                                    <li><a href="#">Ganderbal</a></li>
+                                    <li><a href="#">Kulgam</a></li>
+                                    <li><a href="#">Kupwara</a></li>
+                                    <li><a href="#">Pulwama</a></li>
+                                    <li><a href="#">Shopian</a></li>
+                                    <li><a href="#">Srinagar</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Initiatives</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="/tms">TMS</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+ 
+    
+      <div class="slider">
+    <img src="photo1.jpg" class="slide active">
+    <img src="photo2.jpg" class="slide">
+    <img src="photo3.jpg" class="slide">
+    <img src="photo4.jpg" class="slide">
+    
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</div>
+    
+    <div class="content">
+        <div class="section-wrapper director-message">
+            <img src="director.jpeg" alt="Director's Photo">
+            <h2>Message from the Director</h2>
+            <p>Welcome to JKSCERT. Our mission is to enhance the quality of education through various initiatives and programs. We are committed to providing the best resources and support to educators and students alike. Thank you for visiting our website.</p>
+        </div>
+        
+        <div class="section-wrapper about-scert">
+            <h2>About SCERT</h2>
+            <p>The State Council of Educational Research and Training (SCERT) of Jammu & Kashmir is dedicated to enhancing the quality of education in the state. We focus on teacher training, curriculum development, and educational research to ensure that our students receive the best possible education.</p>
+        </div>
+
+        <div class="section-wrapper content-wrapper">
+            <!-- Orders and Circulars Section -->
+            <section class="orders">
+                <h2>Orders and Circulars</h2>
+	<div class="order-wrapper">
+                <ul id="ordersList">
+                    <li><a href="#">Order regarding new examination guidelines.</a></li>
+                    <li><a href="#">Circular for summer vacations.</a></li>
+                    <li><a href="#">Notification on fee structure updates.</a></li>
+                    <li><a href="#">Government directive on student safety protocols.</a></li>
+                    <li><a href="#">order4</a></li>
+                    <li><a href="#">Circular for summer vacations.</a></li>
+                    <li><a href="#">Notification on fee structure updates.</a></li>
+                    <li><a href="#">Government directive on student safety protocols.</a></li>
+                    <li><a href="#">Order regarding new examination guidelines.</a></li>
+                    <li><a href="#">Circular for summer vacations.</a></li>
+                    <li><a href="#">Notification on fee structure updates.</a></li>
+                    <li><a href="#">Government directive on student safety protocols.</a></li>
+                </ul>
+	</div>
+            </section>
+
+            <!-- Announcements Section -->
+         <section class="announcements">
+    <h2>Announcements</h2>
+    <div class="announcement-wrapper">
+        <ul id="announcementList">
+            <li><a href="#">New curriculum updates for the upcoming academic year.</a></li>
+            <li><a href="#">Upcoming teacher training workshops and seminars.</a></li>
+            <li><a href="#">Important dates for examinations and results.</a></li>
+            <li><a href="#">Launch of new digital education platforms.</a></li>
+        </ul>
+    </div>
+</section>
+
+        </div>
+
+        <div class="section-wrapper initiatives">
+            <h2>Digital Education Initiatives</h2>
+            <p>Explore our various digital education initiatives aimed at integrating technology into the learning process. These initiatives include online courses, digital classrooms, and resources to support remote learning.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 JKSCERT. All rights reserved.</p>
+    </footer>
+
+        
+<script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        // Auto Slide
+        let autoSlideIndex = 1;
+        setInterval(function() {
+            changeSlide(1);
+        }, 5000); // Change every 5 seconds
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const ordersListItems = document.querySelectorAll('#ordersList li');
+
+    // Add 'new' class to the first three orders
+    for (let i = 0; i < 3 && i < ordersListItems.length; i++) {
+        ordersListItems[i].classList.add('new');
+    }
+});
+
+    </script>
+
+
+</body>
+</html>
